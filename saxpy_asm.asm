@@ -1,61 +1,43 @@
-; Assembly part using x86-64
-
-;section .data
-;msg db "Hello World!", 13,10,0
-
-;section .text
-;bits 64
-;default rel ; Handles address relocation
-
-;global saxpy_asm ; Function name
-;extern printf
-
-;saxpy_asm:
-;	sub rsp, 8*5 ; Caller
-;	lea rcx, [msg]
-;	call printf
-;	add rsp, 8*5
-;	ret
-
-
-
-	section .data
-    A_float dd 0.0        ; Scalar A
-    X_vector dd 0.0, 0.0, 0.0   ; Input vector X
-    Y_vector dd 0.0, 0.0, 0.0   ; Input vector Y
-    Z_result dd 0.0, 0.0, 0.0   ; Result vector Z
-
 section .text
-    global saxpy_asm
+bits 64
+default rel
+
+global saxpy_asm
 
 saxpy_asm:
+    ;write your code here
     
-    push rbp
+    ; int n (size of vector) is passed to ECX 
+    ; float A (scalar variable) is passed to xmm1
+    ; float* X (first vector) is passed to r8 (address)
+    ; float* Y (second vector) is passed to r9 (address)
+    ; float* Z (result vector) should be passed to r10 ; do by (mov r10, [rbp+32])
+
+    push rsi
+    push rbp 
     mov rbp, rsp
+    add rbp, 16
+    add rbp, 8
+    mov rdi, 0
+    mov r10, [rbp+32] ; Initialize r10 as Z[]
+    movss xmm7, xmm1 ; Initialize xmm7 as A
 
-    
-    movss xmm0, dword [A_float]
+    L1: 
 
+        movss xmm5, [r8+rdi*4]      ; Initialize X[i] as xmm5
+        mulss xmm5, xmm7            ; A*X[i]
+        movss xmm8, [r9+rdi*4]      ; Initialize Y[i] as xmm8
+        addss xmm5, xmm8            ; +Y[i]
+        ; Now answer is in xmm5
     
-    mov ecx, 3          ; Vector length (assuming 3 elements)
-saxpy_loop:
+        ; Move answer to Z[i]
+        movss [r10+rdi*4], xmm5
     
-    movss xmm1, dword [X_vector + ecx*4 - 4]
+        INC rdi
+        DEC ECX
 
+    JNZ L1
     
-    movss xmm2, dword [Y_vector + ecx*4 - 4]
-
-    
-    mulss xmm1, xmm0    ; A * X[i]
-    addss xmm1, xmm2    ; A * X[i] + Y[i]
-
-    
-    movss dword [Z_result + ecx*4 - 4], xmm1
-
-    
-    loop saxpy_loop
-
-    
-    mov rsp, rbp
     pop rbp
+    pop rsi
     ret
