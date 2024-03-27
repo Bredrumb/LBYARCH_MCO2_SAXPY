@@ -13,7 +13,7 @@
 static float XY_testvec[twopow27]; 
 static float Z_resultvec[twopow27]; 
 
-extern void saxpy_asm(); 
+extern void saxpy_asm(int n, float A, float X[], float Y[], float Z[]);
 // Has to be the same name as in .ASM file (extern)
 
 extern void saxpy_c(int n, float A, float X[], float Y[], float Z[]);
@@ -23,9 +23,11 @@ extern void saxpy_c(int n, float A, float X[], float Y[], float Z[]);
 int main() {
 
 	// For timing runtime of the programs/kernels
-	clock_t start, end;
-	double time_taken;
-	double avg_time = 0.0;
+	clock_t start;
+	clock_t diff;
+	int time_taken;
+	int avg_time;
+
 	srand((unsigned int)time(NULL));
 	int vecsize;
 	float A_testscalar;
@@ -44,11 +46,12 @@ int main() {
 		printf("\n==================== C KERNEL RESULTS ====================\n");
 
 			// Run C Kernel 30 times and then time average
+			avg_time = 0;
 			for (int i = 0; i < testcount; i++) {	
 				start = clock();
 				saxpy_c(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL C KERNEL (saxpy_c.c)
-				end = clock();
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
 			avg_time = avg_time / testcount;
@@ -58,25 +61,28 @@ int main() {
 			for (int i = 0; i < 10; i++) {
 				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nC Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nC Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time%1000);
 		
 		//////// ASM KERNEL ////////
 		printf("\n=================== ASM KERNEL RESULTS ===================\n");
 
 			// Run ASM Kernel 30 times and then time average
+			avg_time = 0;
 			for (int i = 0; i < testcount; i++) {
 				start = clock();
-				//saxpy_asm();	// CALL ASM KERNEL (saxpy_asm.asm)
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				saxpy_asm(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL ASM KERNEL (saxpy_asm.asm)
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
+			avg_time = avg_time / testcount;
 
 			// Print Results 
 			printf("\nASM Kernel Z[] Vector (First 10 Elements):\n");
 			for (int i = 0; i < 10; i++) {
-				printf("\tWIP\n");
+				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nASM Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nASM Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time % 1000);
 
 
 	// Test B : 2^24 sized vectors with randomly generated floats
@@ -93,11 +99,12 @@ int main() {
 		printf("\n==================== C KERNEL RESULTS ====================\n");
 
 			// Run C Kernel 30 times and then time average
+			avg_time = 0;
 			for (int i = 0; i < testcount; i++) {	
 				start = clock();
 				saxpy_c(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL C KERNEL (saxpy_c.c)
-				end = clock();
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
 			avg_time = avg_time / testcount;
@@ -107,25 +114,28 @@ int main() {
 			for (int i = 0; i < 10; i++) {
 				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nC Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nC Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time % 1000);
 		
 		//////// ASM KERNEL ////////
 		printf("\n=================== ASM KERNEL RESULTS ===================\n");
 
 			// Run ASM Kernel 30 times and then time average
+			avg_time = 0;	
 			for (int i = 0; i < testcount; i++) {
 				start = clock();
-				//saxpy_asm();	// CALL ASM KERNEL (saxpy_asm.asm)
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				saxpy_asm(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL ASM KERNEL (saxpy_asm.asm)
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
+			avg_time = avg_time / testcount;
 
 			// Print Results 
 			printf("\nASM Kernel Z[] Vector (First 10 Elements):\n");
 			for (int i = 0; i < 10; i++) {
-				printf("\tWIP\n");
+				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nASM Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nASM Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time % 1000);
 
 
 
@@ -145,11 +155,12 @@ int main() {
 		printf("\n==================== C KERNEL RESULTS ====================\n");
 
 			// Run C Kernel 30 times and then time average
+			avg_time = 0;
 			for (int i = 0; i < testcount; i++) {	
 				start = clock();
 				saxpy_c(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL C KERNEL (saxpy_c.c)
-				end = clock();
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
 			avg_time = avg_time / testcount;
@@ -159,25 +170,28 @@ int main() {
 			for (int i = 0; i < 10; i++) {
 				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nC Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nC Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time % 1000);
 		
 		//////// ASM KERNEL ////////
 		printf("\n=================== ASM KERNEL RESULTS ===================\n");
 
 			// Run ASM Kernel 30 times and then time average
+			avg_time = 0;
 			for (int i = 0; i < testcount; i++) {
 				start = clock();
-				//saxpy_asm();	// CALL ASM KERNEL (saxpy_asm.asm)
-				time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+				saxpy_asm(vecsize, A_testscalar, XY_testvec, XY_testvec, Z_resultvec);	// CALL ASM KERNEL (saxpy_asm.asm)
+				diff = clock() - start;
+				time_taken = diff * 1000 / CLOCKS_PER_SEC;
 				avg_time = avg_time + time_taken;
 			}
+			avg_time = avg_time / testcount;
 
 			// Print Results 
 			printf("\nASM Kernel Z[] Vector (First 10 Elements):\n");
 			for (int i = 0; i < 10; i++) {
-				printf("\tWIP\n");
+				printf("\t%.3f\n", Z_resultvec[i]);
 			}
-			printf("\nASM Kernel Avg. Runtime (30 loops) : %.6f seconds\n", avg_time);
+			printf("\nASM Kernel Avg. Runtime (30 loops) : %d milliseconds\n", avg_time % 1000);
 		
 	
 
