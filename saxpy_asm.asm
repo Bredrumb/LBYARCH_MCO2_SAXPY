@@ -15,6 +15,7 @@ saxpy_asm:
 
     push rsi
     push rbp 
+
     mov rbp, rsp
     add rbp, 16
     add rbp, 8
