@@ -30,6 +30,7 @@ The performance of the C Kernel and ASM Kernel implementations was tested in bot
 ### Debug Mode Results
 The following table shows the average run time (in milliseconds) for each implementation:
 
+
 | Size of Vectors | C Kernel | ASM Kernel |
 |-----------------|----------|------------|
 | 2^20            | 3        | 2          |
@@ -39,6 +40,7 @@ The following table shows the average run time (in milliseconds) for each implem
 ### Release Mode Results
 The following table shows the average run time (in milliseconds) for each implementation:
 
+
 | Size of Vectors | C Kernel | ASM Kernel |
 |-----------------|----------|------------|
 | 2^20            | 1        | 0          |
@@ -46,3 +48,12 @@ The following table shows the average run time (in milliseconds) for each implem
 | 2^26            | 63       | 49         |
 
 
+### Debug Mode Analysis
+
+The ASM Kernel and C Kernel implementations operate similarly in Debug Mode for varying input vector sizes. On the other hand, the ASM Kernel regularly displays marginally shorter average run times than the C Kernel. This might be explained by the fact that assembly language allows for lower-level optimizations that lead to more effective code execution.
+
+### Release Mode Analysis
+
+When comparing the C Kernel and ASM Kernel implementations in Release Mode to Debug Mode, notable performance improvements are seen. Once more, for all vector sizes, the average run time of the ASM Kernel is often lower than that of the C Kernel. 
+
+Overall, the performance analysis indicates that the ASM Kernel implementation offers better execution times compared to the C Kernel, particularly in Release Mode. 
