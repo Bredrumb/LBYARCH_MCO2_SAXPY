@@ -13,7 +13,7 @@ The performance of the C Kernel and ASM Kernel implementations was tested in bot
 ![Debug Mode Result for 2^26](DebugModeResult26.jpg)
 
  Release  Mode Results
- 
+ s
  Release Mode Result for 2^20
 ![Release Mode Result for 2^20](ReleaseModeResult20.jpg)
 
