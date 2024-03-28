@@ -28,55 +28,21 @@ The performance of the C Kernel and ASM Kernel implementations was tested in bot
 
 
 ### Debug Mode Results
+The following table shows the average run time (in milliseconds) for each implementation:
 
-The following table shows the average run time (in milliseconds) for each implementation in Debug Mode:
-
-<table style="background-color: white;">
-  <tr>
-    <th>Size of Vectors</th>
-    <th>C Kernel</th>
-    <th>ASM Kernel</th>
-  </tr>
-  <tr>
-    <td>2^20</td>
-    <td>3</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td>2^24</td>
-    <td>46</td>
-    <td>44</td>
-  </tr>
-  <tr>
-    <td>2^26</td>
-    <td>177</td>
-    <td>173</td>
-  </tr>
-</table>
+| Size of Vectors | C Kernel | ASM Kernel |
+|-----------------|----------|------------|
+| 2^20            | 3        | 2          |
+| 2^24            | 46       | 44         |
+| 2^26            | 177      | 173        |
 
 ### Release Mode Results
+The following table shows the average run time (in milliseconds) for each implementation:
 
-The following table shows the average run time (in milliseconds) for each implementation in Release Mode:
+| Size of Vectors | C Kernel | ASM Kernel |
+|-----------------|----------|------------|
+| 2^20            | 1        | 0          |
+| 2^24            | 19       | 11         |
+| 2^26            | 63       | 49         |
 
-<table style="background-color: white;">
-  <tr>
-    <th>Size of Vectors</th>
-    <th>C Kernel</th>
-    <th>ASM Kernel</th>
-  </tr>
-  <tr>
-    <td>2^20</td>
-    <td>1</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>2^24</td>
-    <td>19</td>
-    <td>11</td>
-  </tr>
-  <tr>
-    <td>2^26</td>
-    <td>63</td>
-    <td>49</td>
-  </tr>
-</table>
+
