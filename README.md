@@ -52,19 +52,12 @@ The following table shows the average run time (in milliseconds) for each implem
 
 The ASM Kernel and C Kernel implementations operate similarly in Debug Mode for varying input vector sizes. On the other hand, the ASM Kernel regularly displays marginally shorter average run times than the C Kernel. This might be explained by assembly language allowing for lower-level optimizations that lead to more effective code execution.
 
-Performance Improvement in Debug Mode:  
-For 2^20-sized vectors: ASM Kernel shows a 33.33% improvement over C Kernel.  
-For 2^24-sized vectors: ASM Kernel shows a 4.35% improvement over C Kernel.  
-For 2^26-sized vectors: ASM Kernel shows a 2.26% improvement over C Kernel.  
-
+In Debug Mode, for 2^20-sized vectors, the ASM Kernel exhibits a 33.33% improvement over the C Kernel. For 2^24-sized vectors, the ASM Kernel demonstrates a 4.35% improvement over the C Kernel. Similarly, for 2^26-sized vectors, the ASM Kernel shows a 2.26% improvement over the C Kernel.
 
 ### Release Mode Analysis
 
 When comparing the C Kernel and ASM Kernel implementations in Release Mode to Debug Mode, notable performance improvements are seen. Once more, for all vector sizes, the average run time of the ASM Kernel is often lower than that of the C Kernel. 
 
-Performance Improvement in Release Mode:  
-For 2^20-sized vectors: ASM Kernel shows a 100% improvement over C Kernel.  
-For 2^24-sized vectors: ASM Kernel shows a 42.11% improvement over C Kernel.  
-For 2^26-sized vectors: ASM Kernel shows a 22.22% improvement over C Kernel. 
+In Release Mode, for 2^20-sized vectors, the ASM Kernel displays a 100% improvement over the C Kernel. For 2^24-sized vectors, the ASM Kernel exhibits a 42.11% improvement over the C Kernel. Likewise, for 2^26-sized vectors, the ASM Kernel shows a 22.22% improvement over the C Kernel
 
 The performance analysis indicates that the ASM Kernel implementation offers better execution times than the C Kernel, particularly in Release Mode. 
