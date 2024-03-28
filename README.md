@@ -3,17 +3,17 @@
 The performance of the C Kernel and ASM Kernel implementations was tested in both Debug Mode and Release Mode across different sizes of input vectors.
  Debug Mode Results
 
-![DebugModeResult20](https://github.com/Bredrumb/LBYARCH_MCO2_SAXPY/assets/83742598/ffe4a390-83bf-4082-ad5d-d8d799c3634c)
 
+![Debug Mode Result for 2^20](DebugModeResult20.jpg)
 
-![alt text](DebugModeResult24.jpg)
+![Debug Mode Result for 2^24](DebugModeResult24.jpg)
 
-![alt text](DebugModeResult26.jpg)
+![Debug Mode Result for 2^26](DebugModeResult26.jpg)
 
  Release  Mode Results
 
-![alt text](ReleaseModeResult20.jpg)
+![Release Mode Result for 2^20](ReleaseModeResult20.jpg)
 
-![alt text](ReleaseModeResult24.jpg)
+![Release Mode Result for 2^24](ReleaseModeResult24.jpg)
 
-![alt text](ReleaseModeResult26.jpg)
+![Release Mode Result for 2^26](ReleaseModeResult26.jpg)
