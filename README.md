@@ -1,5 +1,7 @@
-**Comparative Execution Time
-**
+**Comparative Execution Time**
+
+
+
 The performance of the C Kernel and ASM Kernel implementations was tested in both Debug Mode and Release Mode across different sizes of input vectors.
  Debug Mode Results
 
