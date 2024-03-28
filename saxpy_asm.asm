@@ -21,12 +21,11 @@ saxpy_asm:
     add rbp, 8
     mov rdi, 0
     mov r10, [rbp+32] ; Initialize r10 as Z[]
-    movss xmm7, xmm1 ; Initialize xmm7 as A
 
     L1: 
 
         movss xmm5, [r8+rdi*4]      ; Initialize X[i] as xmm5
-        mulss xmm5, xmm7            ; A*X[i]
+        mulss xmm5, xmm1            ; A*X[i]
         movss xmm8, [r9+rdi*4]      ; Initialize Y[i] as xmm8
         addss xmm5, xmm8            ; +Y[i]
         ; Now answer is in xmm5
