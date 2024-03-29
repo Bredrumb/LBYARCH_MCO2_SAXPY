@@ -54,3 +54,6 @@ When comparing the C Kernel and ASM Kernel implementations in Release Mode to De
 In Release Mode, for 2^20-sized vectors, the ASM Kernel displays a 100% improvement over the C Kernel. For 2^24-sized vectors, the ASM Kernel exhibits a 42.11% improvement over the C Kernel. Likewise, for 2^26-sized vectors, the ASM Kernel shows a 22.22% improvement over the C Kernel
 
 The performance analysis indicates that the ASM Kernel implementation offers better execution times than the C Kernel, particularly in Release Mode. 
+
+### Graph
+![LBYARCH MP2 CODE](https://github.com/Bredrumb/LBYARCH_MCO2_SAXPY/assets/83742598/2a3dbeb9-3fe0-41fd-b711-64246c7ecd1a)
