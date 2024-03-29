@@ -31,25 +31,10 @@ The performance of the C Kernel and ASM Kernel implementations was tested in bot
 The following table shows the average run time (in milliseconds) for each implementation:
 
 
-| Size of Vectors | C Kernel | ASM Kernel |
-|-----------------|----------|------------|
-| 2^20            | 3        | 2          |
-| 2^24            | 46       | 44         |
-| 2^26            | 177      | 173        |
-
-
 ![TableLBYARCH2](https://github.com/Bredrumb/LBYARCH_MCO2_SAXPY/assets/83742598/c4f22754-d037-4c14-ad7b-276cb22d3a5a)
 
 ### Release Mode Results
 The following table shows the average run time (in milliseconds) for each implementation:
-
-
-| Size of Vectors | C Kernel | ASM Kernel |
-|-----------------|----------|------------|
-| 2^20            | 1        | 0          |
-| 2^24            | 19       | 11         |
-| 2^26            | 63       | 49         |
-
 
 ![TableLBYARCH](https://github.com/Bredrumb/LBYARCH_MCO2_SAXPY/assets/83742598/ba40cb3b-fd96-4ecd-a37c-5b4363f17c5c)
 
