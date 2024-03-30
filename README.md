@@ -1,3 +1,7 @@
+_Group 4_
+Rosario, Elijah Nicolo D.
+Srivastava, Naman C.
+
 # **Comparative Execution Time**
 
 The performance of the C Kernel and ASM Kernel implementations was tested in both Debug Mode and Release Mode across different sizes of input vectors. The performance between the two kernels is tested on the SAXPY Function. The sizes of the vectors are 2^20, 2^24, and 2^26. The memory limit of the test tool in Visual Studio is only up to a certain limit such that the highest array it can provide is 2^26. 
